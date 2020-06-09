@@ -235,9 +235,6 @@ awful.screen.connect_for_each_screen(function(s)
 		adjust = 15
 		-- If you want to adjust everything (adjust here is an integer):
 		s.padding = {left=s.padding.left+adjust, right=s.padding.right+adjust, top=s.padding.top+adjust, bottom=s.padding.bottom+adjust}
-		
-		-- If you want to adjust just certain parts (left for instance):
-		s.padding.left = s.padding.left+adjust
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = 22})
