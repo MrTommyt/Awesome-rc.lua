@@ -62,7 +62,7 @@ terminal = "alacritty" --os.getenv("TERMINAL") or "alacritty"
 --require("rc_d.layouts")
 
 theme.useless_gap_width = 10
-adjust = 2
+adjust = 1
 beautiful.useless_gap = 6
 
 -- Default modkey.
