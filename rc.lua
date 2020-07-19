@@ -61,7 +61,7 @@ terminal = "alacritty" --os.getenv("TERMINAL") or "alacritty"
 -- layouts
 --require("rc_d.layouts")
 
-theme.useless_gap_width = 10
+theme.useless_gap_width = 8
 adjust = 1
 beautiful.useless_gap = 6
 
@@ -563,7 +563,7 @@ client.connect_signal("manage", function (c)
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
 		c.shape = function(cr,w,h)
-        gears.shape.rounded_rect(cr, w, h, 10)
+        gears.shape.rounded_rect(cr, w, h, 9)
     end
 		
     if awesome.startup and
