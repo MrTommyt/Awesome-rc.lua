@@ -44,12 +44,13 @@ end
 -- Chosen colors and buttons look alike adapta maia theme
 beautiful.init("/usr/share/awesome/themes/cesious/theme.lua")
 beautiful.icon_theme        = "Papirus-Dark"
-beautiful.bg_normal         = "#222D32"
-beautiful.bg_focus          = "#2C3940"
+beautiful.bg_normal         = "#222D32" -- "#222D32"
+beautiful.bg_focus          = "#475760"
 beautiful.titlebar_close_button_normal = "/usr/share/awesome/themes/cesious/titlebar/close_normal_adapta.png"
 beautiful.titlebar_close_button_focus = "/usr/share/awesome/themes/cesious/titlebar/close_focus_adapta.png"
 beautiful.font              = "Noto Sans Regular 10"
 beautiful.notification_font = "Noto Sans Bold 10"
+beautiful.notification_icon_size = 48
 
 -- This is used later as the default terminal and editor to run.
 browser = "exo-open --launch WebBrowser" or "firefox"
@@ -61,6 +62,8 @@ terminal = "alacritty" --os.getenv("TERMINAL") or "alacritty"
 --require("rc_d.layouts")
 
 theme.useless_gap_width = 10
+adjust = 2
+beautiful.useless_gap = 6
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -232,7 +235,6 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
-		adjust = 15
 		-- If you want to adjust everything (adjust here is an integer):
 		s.padding = {left=s.padding.left+adjust, right=s.padding.right+adjust, top=s.padding.top+adjust, bottom=s.padding.bottom+adjust}
 
@@ -259,7 +261,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mylayoutbox,
         },
     bottom = 2, -- don't forget to increase wibar height
-    color = "#80aa80",
+    color = "#80AA80",
     widget = wibox.container.margin
     }
 end)
@@ -376,7 +378,7 @@ awful.key({ modkey, "Control" }, "-", function () lain.util.useless_gaps_resize(
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "ö",
+    awful.key({ modkey }, "o",
               function ()
                   awful.prompt.run {
                     prompt       = "Run Lua code: ",
@@ -586,6 +588,7 @@ client.connect_signal("request::titlebars", function(c)
     )
 
     awful.titlebar(c) : setup {
+    		
         { -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
@@ -610,10 +613,10 @@ client.connect_signal("request::titlebars", function(c)
         layout = wibox.layout.align.horizontal
     }
         -- Hide the menubar if we are not floating
-   -- local l = awful.layout.get(c.screen)
-   -- if not (l.name == "floating" or c.floating) then
-   --     awful.titlebar.hide(c)
-   -- end
+    local l = awful.layout.get(c.screen)
+    if not (l.name == "floating" or c.floating) then
+        awful.titlebar.hide(c)
+    end
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
