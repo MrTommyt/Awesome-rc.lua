@@ -631,8 +631,15 @@ client.connect_signal("mouse::enter", function(c)
     end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c) 
+	c.border_color = beautiful.border_focus 
+	c.opacity = 1
+end)
+
+client.connect_signal("unfocus", function(c) 
+	c.border_color = beautiful.border_normal 
+	c.opacity = 0.8
+end)
 
 -- Disable borders on lone windows
 -- Handle border sizes of clients.
@@ -665,6 +672,8 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
   end
 end)
 end
+
+awful.util.spawn("xcompmgr &")
 
 -- }}}
 
