@@ -217,7 +217,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "Net", "Code", "Work", "Prompt", "File", "Game", "Etc" }, s, awful.layout.layouts[1])
+    awful.tag({ "Net", "Code", "Work", "Prompt", "File", "Game", "Etc" }, s, awful.layout.layouts[6])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -638,7 +638,9 @@ end)
 
 client.connect_signal("unfocus", function(c) 
 	c.border_color = beautiful.border_normal 
-	c.opacity = 0.8
+	if not c.floating or c.maximized then
+		c.opacity = 0.8
+	end
 end)
 
 -- Disable borders on lone windows
