@@ -676,6 +676,8 @@ end)
 end
 
 awful.util.spawn("xcompmgr &")
+awful.util.spawn("killall komorebi")
+awful.util.spawn("komorebi")
 
 -- }}}
 
