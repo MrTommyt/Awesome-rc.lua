@@ -272,7 +272,7 @@ awful.screen.connect_for_each_screen(function(s)
                 step_width = 2,
                 step_spacing = 1,
                 color = "#36F324",
-                enable_kill_buttom = true
+                enable_kill_button = true
             }),
             ram_widget(),
             mykeyboardlayout,
