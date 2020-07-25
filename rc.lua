@@ -45,7 +45,7 @@ end
 -- Chosen colors and buttons look alike adapta maia theme
 beautiful.init("/usr/share/awesome/themes/cesious/theme.lua")
 beautiful.icon_theme        = "Papirus-Dark"
-beautiful.bg_normal         = "blur" -- "#222D32"
+beautiful.bg_normal         = "#683057" .. "80"-- "#222D32"
 beautiful.bg_focus          = "#00000040" --"#c7451acf"
 beautiful.menu_bg_normal    = "#00000070"
 beautiful.menu_bg_focus     = "#000000"
