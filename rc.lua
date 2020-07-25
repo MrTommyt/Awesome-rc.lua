@@ -15,6 +15,7 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local freedesktop = require("freedesktop")
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
+-- local translate = require("awesome-wm-widgets.translate-widget.translate")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -44,8 +45,9 @@ end
 -- Chosen colors and buttons look alike adapta maia theme
 beautiful.init("/usr/share/awesome/themes/cesious/theme.lua")
 beautiful.icon_theme        = "Papirus-Dark"
-beautiful.bg_normal         = "#222D32" -- "#222D32"
-beautiful.bg_focus          = "#475760"
+beautiful.bg_normal         = "blur" -- "#222D32"
+beautiful.bg_focus          = "#00000040" --"#c7451acf"
+beautiful.bg_systray        = "blur"
 beautiful.titlebar_close_button_normal = "/usr/share/awesome/themes/cesious/titlebar/close_normal_adapta.png"
 beautiful.titlebar_close_button_focus = "/usr/share/awesome/themes/cesious/titlebar/close_focus_adapta.png"
 beautiful.font              = "Noto Sans Regular 10"
@@ -212,6 +214,11 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+local rhythmbox_widget = require("awesome-wm-widgets.rhythmbox-widget.rhythmbox")
+
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -239,7 +246,7 @@ awful.screen.connect_for_each_screen(function(s)
 		s.padding = {left=s.padding.left+adjust, right=s.padding.right+adjust, top=s.padding.top+adjust, bottom=s.padding.bottom+adjust}
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 22})
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 22, drawable = true})
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -254,15 +261,21 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
+            --rhythmbox_widget,
+            cpu_widget({
+                width = 50,
+                step_width = 2,
+                step_spacing = 1,
+                color = "#36F324",
+                enable_kill_buttom = true
+            }),
+            ram_widget(),
             mykeyboardlayout,
             separator,
             mytextclock,
             s.mylayoutbox,
+            wibox.widget.systray(),
         },
-    bottom = 2, -- don't forget to increase wibar height
-    color = "#80AA80",
-    widget = wibox.container.margin
     }
 end)
 -- }}}
@@ -317,6 +330,9 @@ awful.key({ modkey, "Control" }, "-", function () lain.util.useless_gaps_resize(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
+    --[[ awful.key({ modkey }, "c", 
+        function() translate.show_translate_prompt('<api-key>') end, 
+        { description = "run translate prompt", group = "launcher" }), ]]
     awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
@@ -632,12 +648,12 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 client.connect_signal("focus", function(c) 
-	c.border_color = beautiful.border_focus 
+	-- c.border_color = beautiful.border_focus 
 	c.opacity = 1
 end)
 
 client.connect_signal("unfocus", function(c) 
-	c.border_color = beautiful.border_normal 
+	-- c.border_color = beautiful.border_normal 
 	if not c.floating or c.maximized then
 		c.opacity = 0.8
 	end
