@@ -675,9 +675,9 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
 end)
 end
 
-awful.util.spawn("xcompmgr &")
-awful.util.spawn("killall komorebi")
-awful.util.spawn("komorebi")
+awful.util.spawn("~/.config/awesome/automrt.sh")
+--awful.util.spawn("if [[ $(ps -e | grep picom) = "" ]]; then exec picom; fi")
+--awful.util.spawn("if [[ $(ps -e | grep komorebi) = "" ]]; then  exec komorebi; fi")
 
 -- }}}
 

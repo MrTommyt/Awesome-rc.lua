@@ -61,8 +61,8 @@ terminal = "alacritty" --os.getenv("TERMINAL") or "alacritty"
 -- layouts
 --require("rc_d.layouts")
 
-theme.useless_gap_width = 10
-adjust = 2
+theme.useless_gap_width = 8
+adjust = 1
 beautiful.useless_gap = 6
 
 -- Default modkey.
@@ -217,7 +217,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "Net", "Code", "Work", "Prompt", "File", "Game", "Etc" }, s, awful.layout.layouts[1])
+    awful.tag({ "Net", "Code", "Work", "Prompt", "File", "Game", "Etc" }, s, awful.layout.layouts[6])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -563,7 +563,7 @@ client.connect_signal("manage", function (c)
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
 		c.shape = function(cr,w,h)
-        gears.shape.rounded_rect(cr,w,h,14)
+        gears.shape.rounded_rect(cr, w, h, 9)
     end
 		
     if awesome.startup and
@@ -631,8 +631,17 @@ client.connect_signal("mouse::enter", function(c)
     end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c) 
+	c.border_color = beautiful.border_focus 
+	c.opacity = 1
+end)
+
+client.connect_signal("unfocus", function(c) 
+	c.border_color = beautiful.border_normal 
+	if not c.floating or c.maximized then
+		c.opacity = 0.8
+	end
+end)
 
 -- Disable borders on lone windows
 -- Handle border sizes of clients.
@@ -665,6 +674,9 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
   end
 end)
 end
+
+awful.util.spawn("if [[ $(ps -e | grep picom) = "" ]]; then exec picom; fi")
+awful.util.spawn("if [[ $(ps -e | grep komorebi) = "" ]]; then  exec komorebi; fi")
 
 -- }}}
 
