@@ -651,12 +651,12 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 client.connect_signal("focus", function(c) 
-	-- c.border_color = beautiful.border_focus 
+	c.border_color = "#FFA504"
 	c.opacity = 1
 end)
 
 client.connect_signal("unfocus", function(c) 
-	-- c.border_color = beautiful.border_normal 
+	c.border_color = "#09395F" 
 	if not c.floating or c.maximized then
 		c.opacity = 0.8
 	end
