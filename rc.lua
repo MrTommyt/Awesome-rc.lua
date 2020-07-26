@@ -276,7 +276,7 @@ awful.screen.connect_for_each_screen(function(s)
                 enable_kill_button = true
             }),
             ram_widget(),
-            mykeyboardlayout,
+            --mykeyboardlayout,
         
             mytextclock,
             s.mylayoutbox,
