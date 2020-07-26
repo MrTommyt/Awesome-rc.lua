@@ -44,20 +44,23 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- Chosen colors and buttons look alike adapta maia theme
 beautiful.init("/usr/share/awesome/themes/cesious/theme.lua")
-beautiful.icon_theme        = "Papirus-Dark"
-beautiful.bg_normal         = "#683057" .. "80"-- "#222D32"
-beautiful.bg_focus          = "#00000040" --"#c7451acf"
-beautiful.menu_bg_normal    = "#00000070"
-beautiful.menu_bg_focus     = "#000000"
-beautiful.menubar_bg_normal = beautiful.bg_normal
-beautiful.menubar_bg_focus  = beautiful.bg_focus
-beautiful.notification_bg   = "#00000070"
-beautiful.bg_systray        = "#683057"
-beautiful.titlebar_close_button_normal = "/usr/share/awesome/themes/cesious/titlebar/close_normal_adapta.png"
-beautiful.titlebar_close_button_focus = "/usr/share/awesome/themes/cesious/titlebar/close_focus_adapta.png"
-beautiful.font              = "Noto Sans Regular 10"
-beautiful.notification_font = "Noto Sans Bold 10"
-beautiful.notification_icon_size = 48
+beautiful.icon_theme                    = "Papirus-Dark"
+beautiful.bg_normal                     = "#683057" .. "80"-- "#222D32"
+beautiful.bg_focus                      = "#00000040" --"#c7451acf"
+beautiful.menu_bg_normal                = "#00000070"
+beautiful.menu_bg_focus                 = "#000000"
+beautiful.menubar_bg_normal             = beautiful.bg_normal
+beautiful.menubar_bg_focus              = beautiful.bg_focus
+beautiful.notification_bg               = "#00000070"
+beautiful.bg_systray                    = "#683057"
+beautiful.titlebar_close_button_normal  = "/usr/share/awesome/themes/cesious/titlebar/close_normal_adapta.png"
+beautiful.titlebar_close_button_focus   = "/usr/share/awesome/themes/cesious/titlebar/close_focus_adapta.png"
+beautiful.font                          = "Noto Sans Regular 10"
+beautiful.notification_max_width        = 300
+beautiful.notification_font             = "Noto Sans Bold 10"
+beautiful.notification_icon_size        = 48
+--beautiful.notification_shape = function(cr,w,h)
+--beautiful.notification_shape.rounded_rect(cr, w, h, 9)
 
 -- This is used later as the default terminal and editor to run.
 browser = "exo-open --launch WebBrowser" or "firefox"
