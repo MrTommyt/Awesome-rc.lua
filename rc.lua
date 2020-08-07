@@ -104,7 +104,7 @@ awful.layout.layouts = {
 
 -- {{{ Helper functions
 local function client_menu_toggle_fn()
-    local instance = nil
+    local instance
     return function ()
         if instance and instance.wibox.visible then
             instance:hide()
@@ -225,6 +225,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local rhythmbox = require("awesome-wm-widgets.rhythmbox-widget.rhythmbox")
+local email, email1 = require("awesome-wm-widgets.email-widget.email")
 
 
 awful.screen.connect_for_each_screen(function(s)
@@ -270,6 +271,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             separator,
+            email,
             rhythmbox_widget,
             cpu_widget({
                 width = 50,

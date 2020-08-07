@@ -1,2 +1,5 @@
 /rc.lua.save.1
 /rc.lua.save
+/venv
+# credenciales
+credenciales.yml
