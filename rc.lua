@@ -226,6 +226,7 @@ local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local rhythmbox = require("awesome-wm-widgets.rhythmbox-widget.rhythmbox")
 local email, email1 = require("awesome-wm-widgets.email-widget.email")
+local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 
 
 awful.screen.connect_for_each_screen(function(s)
@@ -272,6 +273,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             separator,
             email,
+            docker_widget(),
             rhythmbox_widget,
             cpu_widget({
                 width = 50,
