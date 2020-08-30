@@ -4,6 +4,18 @@ Mis archivos de configuración del Manjaro Awesome
  <img src="https://github.com/MrTommyt/Awesome-rc.lua/blob/master/2020-08-30-122925_1366x768_scrot.png">
 </p>
 
+## Dependencias
+Este programa requiere otras cosas para funcionar bien
+### Picom
+```bash
+sudo pacman -S picom
+```
+
+### Lain
+```bash
+pacaur -S lain-git
+```
+
 ## Instalación
 Solo es copiar este comando y hace el trabajo solo:
 
