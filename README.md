@@ -6,6 +6,12 @@ Mis archivos de configuración del Manjaro Awesome
 
 ## Dependencias
 Este programa requiere otras cosas para funcionar bien
+
+### Pacaur
+```bash
+sudo pacman -S pacaur
+```
+
 ### Picom
 ```bash
 sudo pacman -S picom
