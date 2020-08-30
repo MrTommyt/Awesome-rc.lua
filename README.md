@@ -16,6 +16,13 @@ sudo pacman -S picom
 pacaur -S lain-git
 ```
 
+### Alacritty
+Alacritty está configurado como shell por defecto
+```bash
+sudo pacman -S alacritty
+```
+
+
 ## Instalación
 Solo es copiar este comando y hace el trabajo solo:
 
