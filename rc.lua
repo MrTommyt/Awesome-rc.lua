@@ -227,6 +227,7 @@ local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local rhythmbox = require("awesome-wm-widgets.rhythmbox-widget.rhythmbox")
 local email, email1 = require("awesome-wm-widgets.email-widget.email")
 local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
+--local github_activity_widget = require("awesome-wm-widgets.github-activity-widget.github-activity-widget")
 
 
 awful.screen.connect_for_each_screen(function(s)
@@ -275,6 +276,9 @@ awful.screen.connect_for_each_screen(function(s)
             email,
             docker_widget(),
             rhythmbox_widget,
+--            github_activity_widget{
+--                username = 'streetturtle',
+--            },
             cpu_widget({
                 width = 50,
                 step_width = 2,
