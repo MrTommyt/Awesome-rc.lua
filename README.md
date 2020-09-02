@@ -33,5 +33,5 @@ sudo pacman -S alacritty
 Solo es copiar este comando y hace el trabajo solo:
 
 ```bash
-rm -rf .config/awesome/ && mkdir .config/awesome/ && git clone --recursive https://github.com/MrTommyt/Awesome-rc.lua.git .config/awesome/
+rm -rf .config/awesome/* && git clone --recursive https://github.com/MrTommyt/Awesome-rc.lua.git .config/awesome/
 ```
