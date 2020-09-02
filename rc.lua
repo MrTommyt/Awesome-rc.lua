@@ -229,6 +229,9 @@ local email, email1 = require("awesome-wm-widgets.email-widget.email")
 local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 --local github_activity_widget = require("awesome-wm-widgets.github-activity-widget.github-activity-widget")
 
+local mytextclock = wibox.widget.textclock()
+local month_calendar = awful.widget.calendar_popup.month()
+month_calendar:attach( mytextclock, "tr" )
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
