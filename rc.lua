@@ -44,21 +44,41 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- Chosen colors and buttons look alike adapta maia theme
 beautiful.init("/usr/share/awesome/themes/cesious/theme.lua")
-beautiful.icon_theme                    = "Papirus-Dark"
-beautiful.bg_normal                     = "#683057" .. "70"-- "#222D32"
-beautiful.bg_focus                      = "#00000040" --"#c7451acf"
-beautiful.menu_bg_normal                = "#00000070"
-beautiful.menu_bg_focus                 = "#000000"
-beautiful.menubar_bg_normal             = beautiful.bg_normal
-beautiful.menubar_bg_focus              = beautiful.bg_focus
-beautiful.notification_bg               = "#00000070"
-beautiful.bg_systray                    = "#683057"
-beautiful.titlebar_close_button_normal  = "/usr/share/awesome/themes/cesious/titlebar/close_normal_adapta.png"
-beautiful.titlebar_close_button_focus   = "/usr/share/awesome/themes/cesious/titlebar/close_focus_adapta.png"
-beautiful.font                          = "Noto Sans Regular 10"
-beautiful.notification_max_width        = 350
-beautiful.notification_font             = "Noto Sans Bold 10"
-beautiful.notification_icon_size        = 48
+beautiful.icon_theme                            = "Papirus-Dark"
+beautiful.bg_normal                             = "#683057" .. "70"-- "#222D32"
+beautiful.bg_focus                              = "#00000040" --"#c7451acf"
+beautiful.menu_bg_normal                        = "#00000070"
+beautiful.menu_bg_focus                         = "#000000"
+beautiful.menubar_bg_normal                     = beautiful.bg_normal
+beautiful.menubar_bg_focus                      = beautiful.bg_focus
+beautiful.notification_bg                       = "#00000070"
+beautiful.bg_systray                            = "#683057"
+-- Close
+beautiful.titlebar_close_button_normal          = "/usr/share/awesome/themes/cesious/titlebar/close_normal.png"
+beautiful.titlebar_close_button_focus           = "/usr/share/awesome/themes/cesious/titlebar/close_focus.png"
+-- Minimize
+beautiful.titlebar_minimize_button_normal       = "/usr/share/awesome/themes/cesious/titlebar/minimize_normal.png"
+beautiful.titlebar_minimize_button_normal_hover = "/usr/share/awesome/themes/cesious/titlebar/minimize_normal.png"
+beautiful.titlebar_minimize_button_normal_press = "/usr/share/awesome/themes/cesious/titlebar/minimize_focus.png"
+-- Maximize
+beautiful.titlebar_maximized_button_normal      = ""
+beautiful.titlebar_maximized_button_focus       = ""
+beautiful.titlebar_maximized_button_normal_active   = ""
+beautiful.titlebar_maximized_button_normal_active_hover = ""
+beautiful.titlebar_maximized_button_normal_active_press = ""
+beautiful.titlebar_maximized_button_focus_active        = ""
+beautiful.titlebar_maximized_button_focus_active_hover  = ""
+beautiful.titlebar_maximized_button_focus_active_press  = ""
+beautiful.titlebar_maximized_button_normal_inactive     = ""
+beautiful.titlebar_maximized_button_normal_inactive_hover   = ""
+beautiful.titlebar_maximized_button_normal_inactive_press   = ""
+beautiful.titlebar_maximized_button_focus_inactive      = ""
+beautiful.titlebar_maximized_button_focus_inactive_hover= ""
+beautiful.titlebar_maximized_button_focus_inactive_press= ""
+beautiful.font                                  = "Noto Sans Regular 10"
+beautiful.notification_max_width                = 350
+beautiful.notification_font                     = "Noto Sans Bold 10"
+beautiful.notification_icon_size                = 48
 --beautiful.notification_shape = function(cr,w,h)
 --beautiful.notification_shape.rounded_rect(cr, w, h, 9)
 
@@ -627,12 +647,14 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c, {size = 22}) : setup {
-    		
+    awful.titlebar(c, {size = 22, bg_normal = "#00000070", bg_focus = "#000000FF"}) : setup {
         { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
+            awful.titlebar.widget.closebutton    (c),
+            -- awful.titlebar.widget.maximizedbutton(c),
+            awful.titlebar.widget.minimizebutton (c),
+            -- awful.titlebar.widget.floatingbutton (c),
+            -- awful.titlebar.widget.ontopbutton    (c),
+            layout = wibox.layout.fixed.horizontal()
         },
         { -- Middle
             { -- Title
@@ -643,12 +665,9 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.stickybutton   (c),
-           -- awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
+            awful.titlebar.widget.iconwidget(c),
+            buttons = buttons,
+            layout  = wibox.layout.fixed.horizontal
         },
         layout = wibox.layout.align.horizontal
     }
