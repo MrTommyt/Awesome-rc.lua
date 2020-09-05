@@ -247,7 +247,7 @@ local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local rhythmbox = require("awesome-wm-widgets.rhythmbox-widget.rhythmbox")
 local email, email1 = require("awesome-wm-widgets.email-widget.email")
 local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
---local github_activity_widget = require("awesome-wm-widgets.github-activity-widget.github-activity-widget")
+
 
 local mytextclock = wibox.widget.textclock()
 local month_calendar = awful.widget.calendar_popup.month()
