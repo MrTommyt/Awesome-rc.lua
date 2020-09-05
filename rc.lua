@@ -251,7 +251,7 @@ local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local rhythmbox = require("awesome-wm-widgets.rhythmbox-widget.rhythmbox")
 local email = require("awesome-wm-widgets.email-widget.email")
 local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
-local net_widgets = require("net_widgets")
+local net_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
 
 local mytextclock = wibox.widget.textclock()
 local month_calendar = awful.widget.calendar_popup.month()
@@ -302,6 +302,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             separator,
             email,
+            -- net_widget,
             rhythmbox_widget,
             cpu_widget({
                 width = 50,
