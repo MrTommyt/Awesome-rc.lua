@@ -59,26 +59,50 @@ beautiful.notification_bg = "#00000070"
 beautiful.bg_systray = "#683057"
 -- Close
 beautiful.titlebar_close_button_normal = "/usr/share/awesome/themes/cesious/titlebar/close_normal.png"
-beautiful.titlebar_close_button_focus = "/usr/share/awesome/themes/cesious/titlebar/close_focus.png"
+beautiful.titlebar_close_button_normal_hover = "/usr/share/awesome/themes/cesious/titlebar/close_normal.png"
+beautiful.titlebar_close_button_normal_press = "/usr/share/awesome/themes/cesious/titlebar/close_focus.png"
+
+beautiful.titlebar_close_button_focus = "/usr/share/awesome/themes/cesious/titlebar/close_normal.png"
+beautiful.titlebar_close_button_focus_hover = "/usr/share/awesome/themes/cesious/titlebar/close_focus.png"
+beautiful.titlebar_close_button_focus_press = "/usr/share/awesome/themes/cesious/titlebar/close_focus.png"
 -- Minimize
 beautiful.titlebar_minimize_button_normal = "/usr/share/awesome/themes/cesious/titlebar/minimize_normal.png"
 beautiful.titlebar_minimize_button_normal_hover = "/usr/share/awesome/themes/cesious/titlebar/minimize_normal.png"
 beautiful.titlebar_minimize_button_normal_press = "/usr/share/awesome/themes/cesious/titlebar/minimize_focus.png"
+
+beautiful.titlebar_minimize_button_focus = "/usr/share/awesome/themes/cesious/titlebar/minimize_normal.png"
+beautiful.titlebar_minimize_button_focus_hover = "/usr/share/awesome/themes/cesious/titlebar/minimize_focus.png"
+beautiful.titlebar_minimize_button_focus_press = "/usr/share/awesome/themes/cesious/titlebar/minimize_focus.png"
 -- Maximize
-beautiful.titlebar_maximized_button_normal = ""
-beautiful.titlebar_maximized_button_focus = ""
-beautiful.titlebar_maximized_button_normal_active = ""
-beautiful.titlebar_maximized_button_normal_active_hover = ""
-beautiful.titlebar_maximized_button_normal_active_press = ""
-beautiful.titlebar_maximized_button_focus_active = ""
-beautiful.titlebar_maximized_button_focus_active_hover = ""
-beautiful.titlebar_maximized_button_focus_active_press = ""
-beautiful.titlebar_maximized_button_normal_inactive = ""
-beautiful.titlebar_maximized_button_normal_inactive_hover = ""
-beautiful.titlebar_maximized_button_normal_inactive_press = ""
-beautiful.titlebar_maximized_button_focus_inactive = ""
-beautiful.titlebar_maximized_button_focus_inactive_hover = ""
-beautiful.titlebar_maximized_button_focus_inactive_press = ""
+beautiful.titlebar_floating_button_normal_inactive
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_normal_inactive.png"
+beautiful.titlebar_floating_button_normal_inactive_hover
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_normal_inactive.png"
+beautiful.titlebar_floating_button_normal_inactive_press
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_focus_inactive.png"
+
+beautiful.titlebar_floating_button_normal_active
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_normal_inactive.png"
+beautiful.titlebar_floating_button_normal_active_hover
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_normal_inactive.png"
+beautiful.titlebar_floating_button_normal_active_press
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_focus_inactive.png"
+
+beautiful.titlebar_floating_button_focus_inactive
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_normal_inactive.png"
+beautiful.titlebar_floating_button_focus_inactive_hover
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_focus_inactive.png"
+beautiful.titlebar_floating_button_focus_inactive_press
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_focus_active.png"
+
+beautiful.titlebar_floating_button_focus_active
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_normal_inactive.png"
+beautiful.titlebar_floating_button_focus_active_hover
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_focus_inactive.png"
+beautiful.titlebar_floating_button_focus_active_press
+= "/usr/share/awesome/themes/cesious/titlebar/maximized_focus_active.png"
+
+-- Fonts
 beautiful.font = "Noto Sans Regular 10"
 beautiful.notification_max_width = 350
 beautiful.notification_font = "Noto Sans Bold 10"
@@ -646,9 +670,9 @@ client.connect_signal("request::titlebars", function(c)
         {
             -- Left
             awful.titlebar.widget.closebutton(c),
-            -- awful.titlebar.widget.maximizedbutton(c),
+            awful.titlebar.widget.floatingbutton (c),
+--            awful.titlebar.widget.maximizedbutton(c),
             awful.titlebar.widget.minimizebutton(c),
-            -- awful.titlebar.widget.floatingbutton (c),
             -- awful.titlebar.widget.ontopbutton    (c),
             layout = wibox.layout.fixed.horizontal()
         },
