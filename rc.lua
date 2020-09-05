@@ -327,7 +327,7 @@ awful.screen.connect_for_each_screen(function(s)
             separator,
             email,
             -- net_widget,
-            rhythmbox_widget,
+            rhythmbox,
             cpu_widget({
                 width = 50,
                 step_width = 2,
@@ -666,7 +666,7 @@ client.connect_signal("request::titlebars", function(c)
             awful.mouse.client.resize(c)
         end))
 
-    awful.titlebar(c, { size = 22, bg_normal = "#00000070", bg_focus = "#000000FF" }):setup {
+    awful.titlebar(c, { size = 22, bg_normal = "#000000DE", bg_focus = "#000000FF" }):setup {
         {
             -- Left
             awful.titlebar.widget.closebutton(c),
