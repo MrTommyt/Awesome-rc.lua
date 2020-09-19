@@ -326,7 +326,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             separator,
             email,
-            -- net_widget,
+            docker_widget(),
             rhythmbox,
             cpu_widget({
                 width = 50,
