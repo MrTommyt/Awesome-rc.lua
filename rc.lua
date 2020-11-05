@@ -103,7 +103,7 @@ beautiful.titlebar_floating_button_focus_active_press
 = "/usr/share/awesome/themes/cesious/titlebar/maximized_focus_active.png"
 
 -- Fonts
-beautiful.font = "Noto Sans Regular 10"
+beautiful.font = "Jetbrains Mono Medium 9"
 beautiful.notification_max_width = 350
 beautiful.notification_font = "Noto Sans Bold 10"
 beautiful.notification_icon_size = 48
@@ -276,14 +276,19 @@ local rhythmbox = require("awesome-wm-widgets.rhythmbox-widget.rhythmbox")
 local email = require("awesome-wm-widgets.email-widget.email")
 local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 local net_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
+local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
 
 local mytextclock = wibox.widget.textclock()
 local month_calendar = awful.widget.calendar_popup.month()
 month_calendar:attach(mytextclock, "tr")
 
+local screens = {}
+local index = 0
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
+    index = index + 1
+    screens[index] = s
 
     -- Each screen has its own tag table.
     awful.tag({ "Net", "Code", "Work", "Prompt", "File", "Game", "Etc" }, s, awful.layout.layouts[6])
@@ -326,7 +331,8 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             separator,
             email,
-            docker_widget(),
+            todo_widget(),
+            --docker_widget(),
             rhythmbox,
             cpu_widget({
                 width = 50,
@@ -339,7 +345,7 @@ awful.screen.connect_for_each_screen(function(s)
             --mykeyboardlayout,
 
             mytextclock,
-            s.mylayoutbox,
+            --s.mylayoutbox,
             wibox.widget.systray(),
         },
     }
@@ -389,6 +395,7 @@ globalkeys = gears.table.join(awful.key({ modkey, }, "s", hotkeys_popup.show_hel
         { description = "focus the next screen", group = "screen" }),
     awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end,
         { description = "focus the previous screen", group = "screen" }),
+
     awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
         { description = "jump to urgent client", group = "client" }),
     --[[ awful.key({ modkey }, "c", 
@@ -455,7 +462,7 @@ globalkeys = gears.table.join(awful.key({ modkey, }, "s", hotkeys_popup.show_hel
     awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
         { description = "run prompt", group = "launcher" }),
 
-    awful.key({ modkey }, "o",
+    awful.key({ modkey }, "",
         function()
             awful.prompt.run {
                 prompt = "Run Lua code: ",
@@ -509,7 +516,8 @@ clientkeys = gears.table.join(awful.key({ modkey, }, "f",
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
         end,
-        { description = "(un)maximize horizontally", group = "client" }))
+        { description = "(un)maximize horizontally", group = "client" })
+    )
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
@@ -526,16 +534,6 @@ for i = 1, 9 do
                 end
             end,
             { description = "view tag #" .. i, group = "tag" }),
-        -- Toggle tag display.
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
-            function()
-                local screen = awful.screen.focused()
-                local tag = screen.tags[i]
-                if tag then
-                    awful.tag.viewtoggle(tag)
-                end
-            end,
-            { description = "toggle tag #" .. i, group = "tag" }),
         -- Move client to tag.
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
             function()
@@ -558,6 +556,15 @@ for i = 1, 9 do
                 end
             end,
             { description = "toggle focused client on tag #" .. i, group = "tag" }))
+
+    clientkeys = gears.table.join(clientkeys, 
+    awful.key({ modkey, "Control" }, "#" .. i + 9,
+            function(c)
+                if screens[i] then
+                    c.move_to_screen(screens[i])
+                end
+            end,
+            { description = "move focused client to tag #" .. i, group = "tag" }))
 end
 
 clientbuttons = gears.table.join(awful.button({}, 1, function(c) client.focus = c; c:raise()
